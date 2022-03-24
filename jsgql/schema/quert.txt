@@ -1,0 +1,70 @@
+ mutation createuser($createuserinpt:createuserInput!){
+  CreateUser(input:$createuserinpt ) {
+    id 
+    name
+    username
+    age
+    nationality
+  }
+ }
+ mutation updateuser($updateuserinput:updateUserInput!){
+  UpdateUser(input:$updateuserinput ) {
+    id 
+    name
+    username
+    age
+    nationality
+  }
+ }
+ mutation delete($deleteuserinput:deleteUserInput!){
+  DeleteUser(input:$deleteuserinput ) {
+  id
+  }
+ }
+ query getUser {
+   users {
+     id
+     name
+     nationality
+     friends{
+       name
+     }
+     faviouratemovies {
+       name
+       yearOfPublish
+     }
+   } 
+ }
+ query getuse($userId:ID!){
+   user(id:$userId){
+     name
+     age
+   }
+ }
+ query getMovies{
+   movies {
+     id
+     name
+     yearOfPublish
+     isInTheater
+   }
+ }
+ query getmovie($moviename:String!){
+   movie(name: $moviename) {
+     name
+     yearOfPublish
+     isInTheater
+   }
+ }
+  -----fregment Example-----
+query fragmentquery{
+  users{
+   ...getuserageorname
+  }
+
+}
+
+fragment getuserageorname on User{
+  name
+  age
+}
